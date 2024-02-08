@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Generator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    #keyDisplay {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    #generateButton {
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Key Generator</h1>
+  <h2>Please be aware that bookmarking/returning to this page via history is strictly prohibited. My system actively monitors such actions, and any attempt to bookmark will lead to an indefinite ban. I have identified one user engaging in this activity: Ryan. You are granted one opportunity to rectify this, but subsequent violations will result in a ban.</h2>
+  <div id="keyDisplay">Key: idontknowlmao</div>
+  <button onclick="sendInfoToWebhook()">Click me to go to the main page</button>
+
+  <!-- Unban button -->
+  <button onclick="unbanUser()">fix banned</button>
+
+  <script>
+    function sendInfoToWebhook() {
+      const bannedStatus = localStorage.getItem("userStatus");
+
+      if (bannedStatus && JSON.parse(bannedStatus).banned === false) {
+        // Redirect to index.html if the user is not banned
+        window.location.href = 'index.html';
+      } else {
+        // Redirect to banned.html if the user is banned or if the status is not set
+        window.location.href = 'banned.html';
+      }
+    }
+
+    function unbanUser() {
+      // Update the user's status to unbanned
+      localStorage.setItem("userStatus", JSON.stringify({ banned: false }));
+      // Optionally, you can add more logic here like notifying the user or refreshing the page
+      alert("User has been unbanned");
+    }
+  </script>
+</body>
+
+</html>
